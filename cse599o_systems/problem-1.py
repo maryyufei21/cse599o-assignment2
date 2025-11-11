@@ -146,7 +146,7 @@ def main():
     ap.add_argument("--sizes", nargs="+", default=["1MB","10MB","100MB","1GB"])
     ap.add_argument("--iters", type=int, default=30, help="Timed iterations per size (keep <5 minutes).")
     ap.add_argument("--warmup", type=int, default=5, help="Warmup iterations per size.")
-    ap.add_argument("--outfile", type=str, default="problem-1-allreduce_results2.csv")
+    ap.add_argument("--outfile", type=str, default="problem-1-allreduce_results-sat.csv")
     ap.add_argument("--link-gbps", type=float, default=None,
                     help="Per-GPU link bandwidth for reference curve (e.g., 300 for NVSwitch).")
     args = ap.parse_args()

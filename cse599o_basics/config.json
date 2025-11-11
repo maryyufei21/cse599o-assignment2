@@ -1,0 +1,45 @@
+{
+    "dataset": {
+        "train_path": "./data/data/train_uint16",
+        "val_path": "./data/data/valid_uint16"
+    },
+    "model": {
+        "vocab_size": 50257,
+        "num_layers": 36,
+        "d_model": 1280,
+        "num_heads": 20,
+        "d_ff": 5120,
+        "max_seq_len": 256,
+        "use_rope": true,
+        "rope_theta": 10000,
+        "dtype": "torch.bfloat16"
+    },
+    "optimizer": {
+        "type": "adamw",
+        "max_lr": 1e-3,
+        "beta1": 0.9,
+        "beta2": 0.95,
+        "eps": 1e-8,
+        "weight_decay": 1e-2,
+        "enable_cosine_lr": true,
+        "min_lr": 1e-5,
+        "T_warmup": 500,
+        "T_cosine": 4500
+    },
+    "training": {
+        "save_checkpoint_path": "./checkpoints/bf16/cosine_lr/",
+        "load_checkpoint_path": null,
+        "max_iterations": 5000,
+        "batch_size": 8,
+        "max_grad_norm": 1.0,
+        "eval_interval": 100,
+        "log_interval": 100,
+        "checkpoint_interval": 1000
+    },
+    "wandb": {
+        "use_wandb": true,
+        "project": "cse599o-basics",
+        "run_name": "bf16"
+    },
+    "device": "cuda"
+}

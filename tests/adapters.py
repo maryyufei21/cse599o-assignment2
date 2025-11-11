@@ -4,13 +4,17 @@ from typing import Type
 
 import torch
 
+from cse599o_systems.ddp_overlap_individual_parameters import DDPOverlapIndividualParameters
+from cse599o_systems.ddp_overlap_bucketed import DDPOverlapBucketed
+from cse599o_systems.optimizer_state_sharding import ShardedStateOptimizer
+
 def get_ddp_individual_parameters(module: torch.nn.Module) -> torch.nn.Module:
     """
     Returns a torch.nn.Module container that handles
     parameter broadcasting and gradient synchronization for
     distributed data parallel training.
 
-    This container should overlaps communication with backprop computation
+    This container should overlap communication with backprop computation
     by asynchronously communicating gradients as they are ready
     in the backward pass. The gradient for each parameter tensor
     is individually communicated.
@@ -22,10 +26,10 @@ def get_ddp_individual_parameters(module: torch.nn.Module) -> torch.nn.Module:
         Instance of a DDP class.
     """
     # For example: return DDPIndividualParameters(module)
-    raise NotImplementedError
+    return DDPOverlapIndividualParameters(module)
 
 
-def ddp_individual_parameters_on_after_backward(ddp_model: torch.nn.Module, optimizer: torch.optim.Optimizer):
+def ddp_individual_parameters_on_after_backward(ddp_model: DDPOverlapIndividualParameters, optimizer: torch.optim.Optimizer):
     """
     Code to run after the backward pass is completed, but before we take
     an optimizer step.
@@ -36,11 +40,10 @@ def ddp_individual_parameters_on_after_backward(ddp_model: torch.nn.Module, opti
         optimizer: torch.optim.Optimizer
             Optimizer being used with the DDP-wrapped model.
     """
-    # For example: ddp_model.finish_gradient_synchronization()
-    raise NotImplementedError
+    ddp_model.finish_gradient_synchronization()
 
 
-def get_ddp_bucketed(module: torch.nn.Module, bucket_size_mb: float) -> torch.nn.Module:
+def get_ddp_bucketed(module: DDPOverlapBucketed, bucket_size_mb: float) -> torch.nn.Module:
     """
     Returns a torch.nn.Module container that handles
     parameter broadcasting and gradient synchronization for
@@ -58,10 +61,10 @@ def get_ddp_bucketed(module: torch.nn.Module, bucket_size_mb: float) -> torch.nn
     Returns:
         Instance of a DDP class.
     """
-    raise NotImplementedError
+    return DDPOverlapBucketed(module, bucket_size_mb)
 
 
-def ddp_bucketed_on_after_backward(ddp_model: torch.nn.Module, optimizer: torch.optim.Optimizer):
+def ddp_bucketed_on_after_backward(ddp_model: DDPOverlapBucketed, optimizer: torch.optim.Optimizer):
     """
     Code to run after the backward pass is completed, but before we take
     an optimizer step.
@@ -73,7 +76,7 @@ def ddp_bucketed_on_after_backward(ddp_model: torch.nn.Module, optimizer: torch.
             Optimizer being used with the DDP-wrapped model.
     """
     # For example: ddp_model.finish_gradient_synchronization()
-    raise NotImplementedError
+    ddp_model.finish_gradient_synchronization()
 
 
 def ddp_bucketed_on_train_batch_start(ddp_model: torch.nn.Module, optimizer: torch.optim.Optimizer):
@@ -86,7 +89,8 @@ def ddp_bucketed_on_train_batch_start(ddp_model: torch.nn.Module, optimizer: tor
         optimizer: torch.optim.Optimizer
             Optimizer being used with the DDP-wrapped model.
     """
-    raise NotImplementedError
+    pass
+
 
 
 def get_sharded_optimizer(params, optimizer_cls: Type[torch.optim.Optimizer], **kwargs) -> torch.optim.Optimizer:
@@ -105,4 +109,4 @@ def get_sharded_optimizer(params, optimizer_cls: Type[torch.optim.Optimizer], **
     Returns:
         Instance of sharded optimizer.
     """
-    raise NotImplementedError
+    return ShardedStateOptimizer(params, optimizer_cls, **kwargs)

@@ -1,0 +1,5 @@
+backend,world_size,message_bytes,message_mb,iter_max_mean_ms,iter_max_median_ms,throughput_gbps,avg_of_rank_means_ms,median_of_rank_medians_ms,ref_link_gbps
+nccl,2,1048576,1.0,0.154,0.153,6.828,0.151,0.15,
+nccl,2,10485760,10.0,1.045,1.046,10.031,1.042,1.042,
+nccl,2,104857600,100.0,9.763,9.779,10.74,9.756,9.769,
+nccl,2,1073741824,1024.0,97.494,98.374,11.013,97.481,98.363,

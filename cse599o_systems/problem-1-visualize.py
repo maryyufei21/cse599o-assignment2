@@ -52,7 +52,7 @@ def compute_throughput(row, use_max_time: bool) -> float:
         t_ms = row["avg_of_rank_means_ms"]
 
     t_s = t_ms / 1e3
-    return (comm_bytes / t_s) / 1e9  # Gb/s
+    return (comm_bytes / t_s) / 1e9  # GB/s
 
 
 def group_by_world_size(rows):
@@ -69,7 +69,7 @@ def plot_throughput(groups, use_max_time, ref_link_gbps, out_path):
     """
     Plot:
       X: message size (MB, log scale)
-      Y: throughput (Gb/s)
+      Y: throughput (GB/s)
       One curve per world_size
       Horizontal theoretical reference line at ref_link_gbps
     """
@@ -86,7 +86,7 @@ def plot_throughput(groups, use_max_time, ref_link_gbps, out_path):
     # Nice ticks for 1, 10, 100, 1024 MB
     plt.xticks([1, 10, 100, 1024], ["1", "10", "100", "1024"])
     plt.xlabel("Message size (MB)")
-    plt.ylabel("Throughput (Gb/s)")
+    plt.ylabel("Throughput (GB/s)")
     plt.title("All-reduce throughput" + label_suffix)
     plt.grid(True, which="both", linestyle="--", alpha=0.3)
     plt.legend()
@@ -114,7 +114,7 @@ def plot_throughput(groups, use_max_time, ref_link_gbps, out_path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--csv_path", default="problem-1-allreduce_results.csv", help="CSV file with benchmark results")
+    ap.add_argument("--csv_path", default="problem-1-allreduce_results2.csv", help="CSV file with benchmark results")
     ap.add_argument(
         "--ref-link-gbps",
         type=float,

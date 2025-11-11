@@ -1,33 +1,33 @@
 Starting baseline training...
-Baseline, Step 1, Loss: 1.4769
-Baseline, Step 2, Loss: 1.7127
-Baseline, Step 3, Loss: 1.6164
-Baseline, Step 4, Loss: 1.6095
-Baseline, Step 5, Loss: 1.7589
+Baseline, Step 1, Loss: 1.5478
+Baseline, Step 2, Loss: 1.4964
+Baseline, Step 3, Loss: 1.6621
+Baseline, Step 4, Loss: 1.5606
+Baseline, Step 5, Loss: 1.6548
 Starting naive DDP training...
 Rank 0 starting naive DDP worker...
 Rank 0 batch size: 1
 Rank 0, Step 1, processing indices: [0]
-Rank 0, Step 1, Loss before all-reduce: 1.4305
+Rank 0, Step 1, Loss before all-reduce: 1.5036
 Rank 0, Step 2, processing indices: [1]
-Rank 0, Step 2, Loss before all-reduce: 1.6578
+Rank 0, Step 2, Loss before all-reduce: 1.4156
 Rank 0, Step 3, processing indices: [2]
-Rank 0, Step 3, Loss before all-reduce: 1.6512
+Rank 0, Step 3, Loss before all-reduce: 1.7222
 Rank 0, Step 4, processing indices: [3]
-Rank 0, Step 4, Loss before all-reduce: 1.5966
+Rank 0, Step 4, Loss before all-reduce: 1.5756
 Rank 0, Step 5, processing indices: [4]
-Rank 0, Step 5, Loss before all-reduce: 1.6439
+Rank 0, Step 5, Loss before all-reduce: 1.6335
 Rank 1 starting naive DDP worker...
 Rank 1 batch size: 1
 Rank 1, Step 1, processing indices: [0]
-Rank 1, Step 1, Loss before all-reduce: 1.5233
+Rank 1, Step 1, Loss before all-reduce: 1.5921
 Rank 1, Step 2, processing indices: [1]
-Rank 1, Step 2, Loss before all-reduce: 1.7675
+Rank 1, Step 2, Loss before all-reduce: 1.5772
 Rank 1, Step 3, processing indices: [2]
-Rank 1, Step 3, Loss before all-reduce: 1.5817
+Rank 1, Step 3, Loss before all-reduce: 1.6020
 Rank 1, Step 4, processing indices: [3]
-Rank 1, Step 4, Loss before all-reduce: 1.6223
+Rank 1, Step 4, Loss before all-reduce: 1.5457
 Rank 1, Step 5, processing indices: [4]
-Rank 1, Step 5, Loss before all-reduce: 1.8738
+Rank 1, Step 5, Loss before all-reduce: 1.6762
 Comparing model states...
 Naive DDP matches baseline!
